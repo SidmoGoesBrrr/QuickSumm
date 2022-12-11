@@ -24,7 +24,7 @@ def text():
 
 def audio():
     audio = st.file_uploader("Upload Audio", type=['wav', 'mp3'])
-    type_of_summary = st.selectbox("What type of summary would you like?",("bullets","bullets_verbose","gist","paragraph"))
+    type_of_summary = st.selectbox("What type of summary would you like?",("bullets","bullets_verbose","paragraph"))
     placeholder.empty()
 
     if st.button("Summarize"):
