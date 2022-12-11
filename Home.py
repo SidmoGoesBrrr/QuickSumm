@@ -6,7 +6,7 @@ st.subheader("This is a web app that summarises text and audio")
 
 add_selectbox = st.sidebar.selectbox(
     'How would you like enter text?',
-    ('', 'Text', 'Audio')
+    ('', 'Text', 'Audio',"Audio_Link")
 )
 
 if add_selectbox == 'Text':
@@ -14,6 +14,8 @@ if add_selectbox == 'Text':
 
 elif add_selectbox == 'Audio':
     audio()
+elif add_selectbox == "Audio_Link":
+    audio_link()
 
 
 def text():
@@ -28,7 +30,18 @@ def text():
             text = summarize_text.summarize(text, summary_length)
             st.write("Summarised text:", font_size=20)
             st.write(text)
+def audio_link():
+    import streamlit as st
+    text = st.text_area("Enter text here", height=200)
+    summary_length = st.slider('How old are you?', 0, 1, 0.4)
 
+    if st.button("Summarise"):
+        if text == "":
+            st.error("Please enter audio_link")
+        else:
+            text = summarize_text.summarize(text, summary_length)
+            st.write("Summarised text:", font_size=20)
+            st.write(text)
 
 def audio():
     audio = st.file_uploader("Upload Audio", type=['wav', 'mp3'])
