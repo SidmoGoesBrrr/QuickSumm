@@ -1,13 +1,51 @@
 import streamlit as st
 import summarize_text
-import summarize_Audio
-
+import summarize_audio
 st.header("Audio Visual Text Summariser")
 st.subheader("This is a web app that summarises text and audio")
+placeholder = st.empty()
+placeholder.image("https://miro.medium.com/max/531/0*UhKdZfJHuXJDYMbh")
+def text():
+    import streamlit as st
+    text = st.text_area("Enter text here", height=200)
+    placeholder.empty()
+    summary_length = st.slider( "Enter the percentage of text you want to summarise",1, 100, 40)
+    summary_length= summary_length/100
+    if st.button("Summarize"):
+        if text == "":
+            st.error("Please enter text to summarize")
+        else:
+            with st.spinner('Summarizing...'):
+                text = summarize_text.summarize(text, summary_length)
+                st.write("Summarized text:", font_size=20)
+                st.write(text)
+
+
+
+def audio():
+    audio = st.file_uploader("Upload Audio", type=['wav', 'mp3'])
+    type_of_summary = st.selectbox("What type of summary would you like?",("bullets","bullets_verbose","gist","paragraph"))
+    placeholder.empty()
+
+    if st.button("Summarize"):
+        if audio is None:
+            st.error("You have not uploaded an audio file")
+        else:
+            with st.spinner('Summarizing...'):
+                url = summarize_audio.upload(audio)
+
+                data, error = summarize_audio.get_transcription_result_url(url,type_of_summary)
+                if error:
+                    print(error)
+                    st.error("Oops there as an error")
+                else:
+                    st.write("Summarized text")
+                    print(data['text'])
+                    st.write(data['summary'])
 
 add_selectbox = st.sidebar.selectbox(
     'How would you like enter text?',
-    ('', 'Text', 'Audio', 'URL')
+    ('', 'Text', 'Audio')
 )
 
 if add_selectbox == 'Text':
@@ -15,54 +53,4 @@ if add_selectbox == 'Text':
 
 elif add_selectbox == 'Audio':
     audio()
-elif add_selectbox == 'URL':
-    URL()
 
-def text():
-    import streamlit as st
-    text = st.text_area("Enter text here", height=200)
-    summary_length = st.slider('What is the length of the summary', 0, 1, 0.4)
-
-    if st.button("Summarise"):
-        if text == "":
-            st.error("Please enter text")
-        else:
-            with st.spinner('Wait for it...'):
-                st.write("Summarised text:", font_size=20)
-                text = summarize_text.summarize(text, summary_length)
-                st.write(text)
-
-
-def URL():
-    url = st.text_area("Enter text here", height=200)
-    type_of_summary = st.selectbox("What type of summary would you like?",
-                                   ("bullets", "bullets_verbose", "gist", "paragraph"))
-    if st.button("Summarise"):
-        if url is None:
-            st.error("You have not uploaded an audio file")
-        else:
-
-            data, error = summarize_audio.get_transcription_result_url(url, type_of_summary)
-            if error:
-                print(error)
-            st.write("Summarised text:", font_size=20)
-            print(data['text'])
-            st.write(data['summary'])
-
-
-def audio():
-    audioa = st.file_uploader("Upload Audio", type=['wav', 'mp3'])
-    type_of_summary = st.selectbox("What type of summary would you like?",
-                                   ("bullets", "bullets_verbose", "gist", "paragraph"))
-    if st.button("Summarise"):
-        if audioa is None:
-            st.error("You have not uploaded an audio file")
-        else:
-            url = summarize_audio.upload(audioa)
-
-            data, error = summarize_audio.get_transcription_result_url(url, type_of_summary)
-            if error:
-                print(error)
-            st.write("Summarised text:", font_size=20)
-            print(data['text'])
-            st.write(data['summary'])
