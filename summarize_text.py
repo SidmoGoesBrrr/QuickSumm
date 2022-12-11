@@ -39,4 +39,4 @@ def summarize(text, per):
         summary = ''.join(final_summary)
         return summary
     except:
-        print("Unexcpected error")
+        print("Unexpected error")
