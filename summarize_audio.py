@@ -2,6 +2,7 @@ import requests
 import time
 upload_endpoint = 'https://api.assemblyai.com/v2/upload'
 transcript_endpoint = 'https://api.assemblyai.com/v2/transcript'
+import streamlit as st
 
 headers_auth_only = {'authorization': st.secrets['api_key']}
 headers = {
