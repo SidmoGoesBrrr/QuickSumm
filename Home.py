@@ -1,42 +1,49 @@
-import spacy
-from spacy.lang.en.stop_words import STOP_WORDS
-from string import punctuation
-from heapq import nlargest
+import streamlit as st
+import summarize_text
+import summarize_audio
+st.header("Audio Visual Text Summariser")
+st.subheader("This is a web app that summarises text and audio")
+
+add_selectbox = st.sidebar.selectbox(
+    'How would you like enter text?',
+    ('', 'Text', 'Audio')
+)
+
+if add_selectbox == 'Text':
+    text()
+
+elif add_selectbox == 'Audio':
+    audio()
 
 
-def summarize(text, per):
-    try:
-        try:
-            nlp = spacy.load("en_core_web_md")
-        except: # If not present, we download
-            spacy.cli.download("en_core_web_md")
-            nlp = spacy.load("en_core_web_md")
-        doc = nlp(text)
-        tokens = [token.text for token in doc]
-        word_frequencies = {}
-        for word in doc:
-            if word.text.lower() not in list(STOP_WORDS):
-                if word.text.lower() not in punctuation:
-                    if word.text not in word_frequencies.keys():
-                        word_frequencies[word.text] = 1
-                    else:
-                        word_frequencies[word.text] += 1
-        max_frequency = max(word_frequencies.values())
-        for word in word_frequencies.keys():
-            word_frequencies[word] = word_frequencies[word] / max_frequency
-        sentence_tokens = [sent for sent in doc.sents]
-        sentence_scores = {}
-        for sent in sentence_tokens:
-            for word in sent:
-                if word.text.lower() in word_frequencies.keys():
-                    if sent not in sentence_scores.keys():
-                        sentence_scores[sent] = word_frequencies[word.text.lower()]
-                    else:
-                        sentence_scores[sent] += word_frequencies[word.text.lower()]
-        select_length = int(len(sentence_tokens) * per)
-        summary = nlargest(select_length, sentence_scores, key=sentence_scores.get)
-        final_summary = [word.text for word in summary]
-        summary = ''.join(final_summary)
-        return summary
-    except:
-        print("Unexpected error")
+def text():
+    import streamlit as st
+    text = st.text_area("Enter text here", height=200)
+    summary_length = st.slider('What is the length of the summary', 0, 1, 0.4)
+
+    if st.button("Summarise"):
+        if text == "":
+            st.error("Please enter text")
+        else:
+            with st.spinner('Wait for it...'):
+                st.write("Summarised text:", font_size=20)
+                text = summarize_text.summarize(text, summary_length)
+                st.write(text)
+
+
+
+def audio():
+    audio = st.file_uploader("Upload Audio", type=['wav', 'mp3'])
+    type_of_summary = st.selectbox("What type of summary would you like?",("bullets","bullets_verbose","gist","paragraph"))
+    if st.button("Summarise"):
+        if audio is None:
+            st.error("You have not uploaded an audio file")
+        else:
+            url = summarize_audio.upload(audio)
+
+            data, error = summarize_audio.get_transcription_result_url(url,type_of_summary)
+            if error:
+                print(error)
+            st.write("Summarised text:", font_size=20)
+            print(data['text'])
+            st.write(data['summary'])
