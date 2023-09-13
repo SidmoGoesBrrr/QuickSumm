@@ -68,7 +68,7 @@ def blog():
 def file():
     placeholder.empty()
     information.empty()
-    openai.api_key = st.secrets['api_key']
+    openai.api_key = st.secrets['openAI_key']
     st.subheader("Chat with your files, powered by LlamaIndex 💬🦙")
             
     if "messages" not in st.session_state.keys(): # Initialize the chat messages history
