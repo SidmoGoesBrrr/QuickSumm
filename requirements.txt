@@ -1,6 +1,6 @@
 spacy 
 requests 
 openai
-langchain
+langchain==0.0.285
 langsmith==0.0.35
 llama-index
