@@ -58,17 +58,14 @@ def blog():
             st.error("Please enter the url to summarize")
         else:
             with st.spinner('Summarizing...'):
-                try:
-                    text = summarize_blog.summarizeURL(url,5)
-                    st.write("Summarized text:")
-                    st.write(text)
-                except:
-                    st.error("Invalid URL")
+                text = summarize_blog.summarizeURL(url,5)
+                st.write("Summarized text:")
+                st.write(text)
                 
 def file():
     placeholder.empty()
     information.empty()
-    openai.api_key = st.secrets['api_key']
+    openai.api_key = st.secrets['openAI_key']
     st.subheader("Chat with your files, powered by LlamaIndex 💬🦙")
             
     if "messages" not in st.session_state.keys(): # Initialize the chat messages history
