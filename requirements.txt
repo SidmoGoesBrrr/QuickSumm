@@ -1,2 +1,6 @@
 spacy 
 requests 
+openai
+langchain
+langsmith==0.0.35
+llama-index
