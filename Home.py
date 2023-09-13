@@ -6,6 +6,10 @@ from llama_index import VectorStoreIndex, ServiceContext, Document, SimpleDirect
 from llama_index.llms import OpenAI
 import openai
 import os
+import nltk
+nltk.download('stopwords')
+
+
 st.header("QuickSumm")
 st.subheader("This is a web app that summarises text, audio and files.")
 information=st.empty()
