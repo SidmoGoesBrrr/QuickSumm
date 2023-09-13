@@ -6,3 +6,5 @@ langsmith==0.0.35
 llama-index
 nltk
 urllib3<2
+docx2txt 
+pypdf
