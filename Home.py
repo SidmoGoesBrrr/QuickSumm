@@ -7,7 +7,11 @@ from llama_index.llms import OpenAI
 import openai
 import os
 import nltk
-
+from PIL import Image
+# Loading Image using PIL
+im = Image.open('https://www.summarizer.org/web_assets/frontend/img/logo.png')
+# Adding Image to web app
+st.set_page_config(page_title="QuickSumm", page_icon = im)
 
 st.header("QuickSumm")
 st.subheader("This is a web app that summarises text, audio and files.")
@@ -151,6 +155,10 @@ elif add_selectbox == "Blog":
 hide_menu_style = """
         <style>
         #MainMenu {visibility: hidden;}
+        
+        footer.replace-text:after {
+ content: "Made by Sid";
+}
         </style>
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
