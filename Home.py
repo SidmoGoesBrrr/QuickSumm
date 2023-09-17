@@ -148,3 +148,9 @@ elif add_selectbox == 'File':
 
 elif add_selectbox == "Blog":
     blog()
+hide_menu_style = """
+        <style>
+        #MainMenu {visibility: hidden;}
+        </style>
+        """
+st.markdown(hide_menu_style, unsafe_allow_html=True)
