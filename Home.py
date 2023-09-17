@@ -42,7 +42,6 @@ def audio():
         else:
             with st.spinner('Summarizing...'):
                 url = summarize_audio.upload(audio)
-
                 data, error = summarize_audio.get_transcription_result_url(url,type_of_summary)
                 if error:
                     print(error)
@@ -107,7 +106,6 @@ def file():
         # else:
         #     print("Nvm")
 
-        @st.cache_resource(show_spinner=False)
         def load_data():
             with st.spinner(text="Loading and indexing the your file – hang tight! This should take 1-2 minutes."):
                 reader = SimpleDirectoryReader(input_dir="./data", recursive=True)
