@@ -156,10 +156,9 @@ hide_menu_style = """
         <style>
         #MainMenu {visibility: hidden;}
         
-        footer.replace-text:after {
+        footer:after {
  content: "Made by Sid";
 }
         </style>
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
-st.footer("~Sid")
