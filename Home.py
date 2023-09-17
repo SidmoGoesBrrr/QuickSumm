@@ -80,8 +80,7 @@ def file():
     if uploaded_files:
         uploaded_file = uploaded_files
         # Ensure the data folder exists
-        data_folder = "/data"
-        os.makedirs(data_folder, exist_ok=True)
+        data_folder = "data"
 
         # Save the uploaded file to the data folder
         existing_files = os.listdir(data_folder)
