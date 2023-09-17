@@ -9,7 +9,7 @@ import os
 import nltk
 from PIL import Image
 # Loading Image using PIL
-im = Image.open('https://www.summarizer.org/web_assets/frontend/img/logo.png')
+im = Image.open('summarizer icon.png')
 # Adding Image to web app
 st.set_page_config(page_title="QuickSumm", page_icon = im)
 
