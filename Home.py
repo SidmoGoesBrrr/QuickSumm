@@ -98,13 +98,13 @@ def file():
             f.write(uploaded_file.read())
 
         # Check the file type and handle indexing accordingly
-        if uploaded_file.type == "text/plain":
-            # Text file, treat it as a document and add it to the index
-            with open(file_path, "r", encoding="utf-8") as text_file:
-                content = text_file.read()
-                doc = Document(content=content, metadata={"filename": uploaded_file.name})
-        else:
-            print("Nvm")
+        # if uploaded_file.type == "text/plain":
+        #     # Text file, treat it as a document and add it to the index
+        #     with open(file_path, "r", encoding="utf-8") as text_file:
+        #         content = text_file.read()
+        #         doc = Document(content=content, metadata={"filename": uploaded_file.name})
+        # else:
+        #     print("Nvm")
 
         @st.cache_resource(show_spinner=False)
         def load_data():
