@@ -7,7 +7,6 @@ from llama_index.llms import OpenAI
 import openai
 import os
 import nltk
-nltk.download('stopwords')
 
 
 st.header("QuickSumm")
@@ -81,7 +80,7 @@ def file():
     if uploaded_files:
         uploaded_file = uploaded_files
         # Ensure the data folder exists
-        data_folder = "./data"
+        data_folder = "/data"
         os.makedirs(data_folder, exist_ok=True)
 
         # Save the uploaded file to the data folder
