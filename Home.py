@@ -62,6 +62,7 @@ def blog():
         else:
             with st.spinner('Summarizing...'):
                 text = summarize_blog.summarizeURL(url,5)
+                text=summarize_text.generate_response(text)
                 st.write("Summarized text:")
                 st.write(text)
                 
