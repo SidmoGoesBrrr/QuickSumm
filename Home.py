@@ -154,4 +154,4 @@ hide_menu_style = """
         </style>
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
-st.footer("~Sid)
+st.footer("~Sid")
