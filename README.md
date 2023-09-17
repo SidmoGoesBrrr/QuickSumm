@@ -1,30 +1,19 @@
-# QuickSumm
-Inspiration:-
-We got our inspiration to build an audio and text summarizer from people who prefer to get the main points of an audio file or a podcast because some people preferring reading something rather than listening to it.
+# QuickSumm 📚🎤🖥️
 
+QuickSumm is a versatile tool that empowers you to effortlessly summarize diverse types of content including texts, audio, blogs, and files using cutting-edge technologies: AssemblyAI for audio transcription and summarization, Langchain for text summarization, and Llamaindex for file summarization. For blog summarization, QuickSumm utilizes bs4 and nltk.
 
-What it does:-
-It converts an audio file or a piece of text to a summarized version of the contents of the input and returns the summary on a website.
+## Features
 
+- **Audio Summarization**: Leverage AssemblyAI to transcribe and summarize audio files, making the information more accessible and actionable.
 
-How we built it:-
-We used streamlit to design the web interface, while the spacy and heapq modules helped with summarizing the input. Most importantly, we used AssemblyAI to convert the audio into text and summarize the audio.
+- **Text and Blog Summarization**: Utilize Langchain's advanced summarization capabilities to distill lengthy texts and blogs into concise, easy-to-digest summaries.
 
+- **File Summarization**: Employ Llamaindex to efficiently summarize files, ensuring quick insights into the contents without the need to read through the entire document.
 
-Challenges we ran into:-
-Each team member had a skill, and we combined all those skills to form this project. The only thing we really faced a challenge in was the AssemblyAi part because we had to figure out how to use it.
+## Try It Out
 
+- Experience QuickSumm in action by visiting [QuickSumm Web App](https://quicksumm.streamlit.app/).
 
-Accomplishments that we're proud of:-
-We are proud of our idea because as mentioned, we managed to get an idea that would combine all the skills we had into one project. We are also extremely proud of how efficiently each of us contributed our part to this project.
+---
 
-
-What we learned:-
-We learned that the AssemblyAI is another tool that we can use for future projects. We also learned that even though you may think that you do not have enough time, you can still accomplish what you need to if you put your mind to it.
-
-
-What's next for QuickSumm:-
-We will now work on translating audio and text from different languages into English, summarizing that and then returning the summarized text in the original language.
-
-
-Try it out at https://quicksumm.streamlit.app/
+Enjoy summarizing and unlocking the essence of your content with QuickSumm! 🌟
