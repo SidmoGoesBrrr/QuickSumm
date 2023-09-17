@@ -157,7 +157,7 @@ hide_menu_style = """
         #MainMenu {visibility: hidden;}
         
         footer:after {
- content: "Made by Sid";
+ content: " by Sid";
 }
         </style>
         """
